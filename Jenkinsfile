@@ -2,6 +2,10 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
         stage('Docker Build') {
             steps {
                 script {
@@ -12,7 +16,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'credentials-id') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'Docker-Credentials') {
                         sh 'docker push ahmaddfathyy/Go-Project:latest'
                     }
                 }

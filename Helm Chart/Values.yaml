@@ -1,11 +1,12 @@
 replicaCount: 3
 
 image:
-  repository: your-docker-repo/image-name
-  tag: tag
+  repository: ahmaddfathyy/go-project
+  tag: latest
 
 mysql:
   host: MYSQL_HOST
+  port: MYSQL_PORT
   user: MYSQL_USER
   password: MYSQL_PASS
   database: internship

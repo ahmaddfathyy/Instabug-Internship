@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     docker.build('ahmaddfathyy/Go-Project:latest') {
-                        sh 'docker build -t myapp .'
+                        sh 'docker build -t Go-App .'
                     }
                 }
             }
@@ -14,7 +14,7 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'credentials-id') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'Docker-Credentials') {
                         sh 'docker push ahmaddfathyy/Go-Project:latest'
                     }
                 }

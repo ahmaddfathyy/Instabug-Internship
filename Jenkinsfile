@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Docker Build') {
             steps {
-                script {
-                    docker.build('Go-Project:latest')
-                }
+                sh 'docker build . -t Go-Project'
             }
         }
         stage('Docker Push') {

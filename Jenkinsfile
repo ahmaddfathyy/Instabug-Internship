@@ -4,14 +4,14 @@ pipeline {
     stages {
         stage('Docker Build') {
             steps {
-                sh 'docker build . -t Go-Project'
+                sh 'docker build . -t go-project'
             }
         }
         stage('Docker Push') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'Docker-Credentials') {
-                        sh 'docker push ahmaddfathyy/Go-Project:latest'
+                        sh 'docker push ahmaddfathyy/go-project:latest'
                     }
                 }
             }

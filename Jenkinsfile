@@ -19,12 +19,12 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         cleanWs()
-    //         docker.image('ahmaddfathyy/Go-Project:latest').withRun { c ->
-    //             sh "docker rmi ${c.id}"
-    //         }
-    //     }
-    // }
+    post {
+        always {
+            cleanWs()
+            docker.image('ahmaddfathyy/Go-Project:latest').withRun { c ->
+                sh "docker rmi ${c.id}"
+            }
+        }
+    }
 }

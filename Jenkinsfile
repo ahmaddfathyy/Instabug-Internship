@@ -21,9 +21,8 @@ pipeline {
 
     post {
         always {
-            cleanWs()
-            docker.image('ahmaddfathyy/go-project:latest').withRun { c ->
-                sh "docker rmi ${c.id}"
+            script {
+                sh 'docker rmi go-project:latest'
             }
         }
     }

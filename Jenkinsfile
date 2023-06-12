@@ -7,11 +7,12 @@ pipeline {
                 sh 'docker build . -t go-project'
             }
         }
-        stage('Docker Push') {
+        stage('Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'Docker-Credentials') {
-                        sh 'docker push ahmaddfathyy/go-project:latest'
+                    docker.withRegistry('https://index.docker.io/v1/', 'Docker-Credentials') {
+                    def image = docker.build("ahmaddfathyy/go-app:latest")
+                    image.push()
                     }
                 }
             }

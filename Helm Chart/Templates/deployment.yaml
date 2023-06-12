@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: myapp
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          ports:
+            - containerPort: 9090
+          env:
+            - name: MYSQL_HOST
+              value: {{ .Values.mysql.host }}
+            - name: MYSQL_USER
+              value: {{ .Values.mysql.user }}
+            - name: MYSQL_PASS
+              value: {{ .Values.mysql.password }}
+            - name: MYSQL_DB
+              value: {{ .Values.mysql.database }}
+          volumeMounts:
+            - name: myapp-persistent-storage
+              mountPath: /data
+
+      volumes:
+        - name: myapp-persistent-storage
+          persistentVolumeClaim:
+            claimName: myapp-persistent-volume-claim

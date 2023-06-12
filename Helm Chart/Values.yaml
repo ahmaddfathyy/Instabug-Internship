@@ -1,0 +1,16 @@
+replicaCount: 3
+
+image:
+  repository: your-docker-repo/image-name
+  tag: tag
+
+mysql:
+  host: MYSQL_HOST
+  user: MYSQL_USER
+  password: MYSQL_PASS
+  database: internship
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
